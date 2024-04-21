@@ -1,8 +1,9 @@
+import os
 from setuptools import setup, find_packages
 
 setup(
     name="kestra-ion",
-    version="0.0.0",
+    version=os.getenv('PACKAGE_VERSION', '0.0.0'),
     author="Anna Geller",
     author_email="hello@kestra.io",
     packages=find_packages(),

@@ -16,8 +16,8 @@ jobs:
       with:
         python-version: '3.x'  # Set up the Python version (3.x uses the latest version of Python 3)
 
-    - name: Extract tag name
-      run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+    - name: Extract tag name and set environment variable
+      run: echo "PACKAGE_VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
 
     - name: Install dependencies
       run: |
@@ -26,7 +26,6 @@ jobs:
 
     - name: Build package
       run: |
-        sed -i "s/version='.*'/version='${{ env.VERSION }}'/" setup.py
         python -m build
 
     - name: Publish package to PyPI
