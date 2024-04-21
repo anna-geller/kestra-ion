@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="kestra-ion",
-    version="0.0.3",
+    version="0.0.0",
     author="Anna Geller",
     author_email="hello@kestra.io",
     packages=find_packages(),
@@ -19,8 +19,6 @@ setup(
     extras_require={"test": ["pytest"]},
     classifiers=[
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
