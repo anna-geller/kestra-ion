@@ -25,18 +25,20 @@ Here's a quick example to get you started with reading Amazon Ion data and conve
 ```python
 from kestra_ion import read_ion
 import pandas as pd
+import requests
 
-# Specify the path to your Ion file
-file_path = "tests/data/employees.ion"
+file_path = "employees.ion"
+url = "https://huggingface.co/datasets/kestra/datasets/resolve/main/ion/employees.ion"
+response = requests.get(url)
+if response.status_code == 200:
+    with open(file_path, "wb") as file:
+        file.write(response.content)
+else:
+    print(f"Failed to download the file. Status code: {response.status_code}")
 
-# Read the Ion file
+
 data = read_ion(file_path)
-
-# Convert the data into a pandas DataFrame
 df = pd.DataFrame(data)
-
-# Display data type information and DataFrame info
-print(df.dtypes)
 print(df.info())
 ```
 
