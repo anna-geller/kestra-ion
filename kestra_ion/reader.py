@@ -2,8 +2,13 @@ import re
 
 import amazon.ion.simpleion as ion
 import dateutil.parser
-from amazon.ion.simple_types import (IonPyBool, IonPyBytes, IonPyDecimal,
-                                     IonPyDict, IonPyNull)
+from amazon.ion.simple_types import (
+    IonPyBool,
+    IonPyBytes,
+    IonPyDecimal,
+    IonPyDict,
+    IonPyNull,
+)
 
 
 def convert_ion_types(value):
