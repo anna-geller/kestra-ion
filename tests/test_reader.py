@@ -1,7 +1,10 @@
-import pytest
-from kestra_ion import read_ion
 import os
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timedelta, timezone
+
+import pytest
+
+from kestra_ion import read_ion
+
 
 @pytest.fixture
 def load_ion_data():
