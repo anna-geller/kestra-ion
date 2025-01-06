@@ -12,7 +12,6 @@ from amazon.ion.simple_types import (
 
 
 def convert_ion_types(value):
-    print(value)
     if isinstance(value, IonPyNull):
         return None
     elif isinstance(value, IonPyDecimal):
