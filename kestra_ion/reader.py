@@ -1,15 +1,18 @@
+import re
+
 import amazon.ion.simpleion as ion
+import dateutil.parser
 from amazon.ion.simple_types import (
-    IonPyDecimal,
-    IonPyNull,
     IonPyBool,
     IonPyBytes,
+    IonPyDecimal,
     IonPyDict,
+    IonPyNull,
 )
-import dateutil.parser
 
 
 def convert_ion_types(value):
+    print(value)
     if isinstance(value, IonPyNull):
         return None
     elif isinstance(value, IonPyDecimal):
@@ -26,7 +29,12 @@ def convert_ion_types(value):
             if value.startswith("LocalDateTime::"):
                 date_str = value.split("::")[1].strip('"')
                 return dateutil.parser.isoparse(date_str)
-            return dateutil.parser.isoparse(value)
+            # Use regex to check if the string is a valid ISO 8601 date
+            iso_date_pattern = r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})?$"
+            if re.match(iso_date_pattern, value):
+                return dateutil.parser.isoparse(value)
+            else:
+                raise ValueError("Not a valid LocalDatetime:: or ISO 8601 date")
         except ValueError:
             return value
     elif isinstance(value, list):
